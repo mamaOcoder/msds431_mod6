@@ -22,18 +22,18 @@ ok      Mod6    0.207s
 
 ## Files
 ### *main.go*
-This file defines the parseCSV() and runLinearRegression() functions.  
-parseCSV() takes in a string filename, parses each record in the CSV into a record object (type struct) and returns a slice of records.  
-runLinearRegression() takes in a string for the predictor feature that is being used, a slice of values for the predictor and slice of response values. This function first splits the data into training (80%) and testing (20%) datasets, then runs gonum's stat.LinearRegression function on the training data which returns computed values for alpha and beta (y = alpha + beta*x). runLinearRegression() then uses these values to predict values for the test dataset and prints the R-squared values for both the training (stat.RSquared) and testing (stat.RSquaredFrom).
+This file defines the *parseCSV()* and *runLinearRegression()* functions.  
+*parseCSV()* takes in a string filename, parses each record in the CSV into a record object (type struct) and returns a slice of records.  
+*runLinearRegression()* takes in a string for the predictor feature that is being used, a slice of values for the predictor and slice of response values. This function first splits the data into training (80%) and testing (20%) datasets, then runs gonum's stat.LinearRegression function on the training data which returns computed values for alpha and beta (y = alpha + beta*x). *runLinearRegression()* then uses these values to predict values for the test dataset and prints the R-squared values for both the training (stat.RSquared) and testing (stat.RSquaredFrom).
 
 ### *serial.go*
-This file defines the runSerial() method. It takes in a slice of housing records, which it loops through to create 4 new slices- one for each of the 3 predictor values (nox, rooms, and crim) and the response values. It then calls runLinearRegression sequentially for each of the predictors.
+This file defines the *runSerial()* method. It takes in a slice of housing records, which it loops through to create 4 new slices- one for each of the 3 predictor values (nox, rooms, and crim) and the response values. It then calls runLinearRegression sequentially for each of the predictors.
 
 ### *serial_test.go*
 This file runs the benchmark test for the serial program.
 
 ### *concurrent.go*
-This file defines the runConcurrent() method. It takes in a slice of housing records, which it loops through to create 4 new slices- one for each of the 3 predictor values (nox, rooms, and crim) and the response values. It then calls runLinearRegression concurrently using sync.WaitGroup.
+This file defines the *runConcurrent()* method. It takes in a slice of housing records, which it loops through to create 4 new slices- one for each of the 3 predictor values (nox, rooms, and crim) and the response values. It then calls runLinearRegression concurrently using sync.WaitGroup.
 
 ### *concurrent_test.go*
 This file runs the benchmark test for the concurrent program.
@@ -46,3 +46,6 @@ Input file for Boston housing data from Miller 1999.
 
 ### *mod6.exe*
 Executable file of cross-compiled Go code for Mac/Windows.
+
+## References
+Miller, Thomas W. 1999. "The Boston splits: Sample size requirements for modern regression." 1999 Proceedings of the Statistical Computing Section of the American Statistical Association, 210–215.
